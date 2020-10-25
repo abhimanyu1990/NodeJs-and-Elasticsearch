@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "123a2fee-3ebc-47b6-9ec5-e192502a61f0",
+		"name": "Elasticsearch",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a Index",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"index\":\"tested\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/index",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"index"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete index",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/index",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"index"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add document",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"index\":\"company\",\n    \"data\":{\n        \"firstname\":\"vicky\",\n        \"lastname\":\"singh\",\n        \"email\":\"example2@abhimanyu.com\",\n        \"employeeId\":\"4\"\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete a document",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"testing\",\n    \"id\":\"1603520966910\",\n    \"type\":\"testing\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/index/data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"index",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update document",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Search",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"testing\",\n    \"type\":\"testing\",\n    \"query\":{\n        \"query\": {\n         \"match\": { \"employee\": \"abhimanyu 0890\" }\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search using Percolator Query",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/ecmascript",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"testing\",\n    \"type\":\"testing\",\n    \"query\":{\n        \"query\": {\n         \"match\": { \"employee\": \"abhimanyu\" }\n        }\n    }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/percolator/search",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"percolator",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Define mapping for an Index. Mapping can be use for define Percolator as well as schema",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"company\",\n    \"properties\":{\n           \"properties\": {\n            \"query2\": {\n               \"type\": \"percolator\"\n             },   \n            \"firstname\": { \"type\": \"text\" },\n            \"lastname\": { \"type\": \"text\" },\n            \"email\": { \"type\": \"text\" },\n            \"emoployeeId\":{\"type\":\"integer\"}\n             }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/mapping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"mapping"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
